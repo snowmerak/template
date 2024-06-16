@@ -17,4 +17,5 @@ gonew github.com/snowmerak/template/<template-name> <your-module-name>
 
 - [hello](./hello/README.md): a simple hello world program
 - [mono](./mono/README.md): a monorepo template
-- [postgres](./postgres/README.md): a sqlc postgresql template
+- [postgres](./postgres/README.md): a sqlc postgresql client template
+- [redis](./redis/README.md): a redis client template
