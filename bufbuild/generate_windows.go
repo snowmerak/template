@@ -3,4 +3,4 @@
 package bufbuild
 
 // when you are working on windows
-//go:generate docker run --volume "${PWD}:/workspace" --workdir /workspace bufbuild/buf generate
+//go:generate docker run -rm --volume "${PWD}:/workspace" --workdir /workspace bufbuild/buf generate
