@@ -7,4 +7,5 @@ use (
 	bufbuild
 	redis
 	nats
+	httpserver
 )
