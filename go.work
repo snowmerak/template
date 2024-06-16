@@ -6,4 +6,5 @@ use (
 	postgres
 	bufbuild
 	redis
+	nats
 )
