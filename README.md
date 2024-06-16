@@ -12,3 +12,9 @@ This project is a project template for [go](https://golang.org/) and [gonew](htt
 ```sh
 gonew github.com/snowmerak/template/<template-name> <your-module-name>
 ```
+
+## templates
+
+- [hello](./hello/README.md): a simple hello world program
+- [mono](./mono/README.md): a monorepo template
+- [postgres](./postgres/README.md): a sqlc postgresql template
