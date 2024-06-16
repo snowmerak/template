@@ -1,0 +1,4 @@
+github.com/redis/rueidis v1.0.39 h1:RNMbL7/tMkiVga/0ukbbFFslcPQckq4zs7c81mkIfTk=
+github.com/redis/rueidis v1.0.39/go.mod h1:bnbkk4+CkXZgDPEbUtSos/o55i4RhFYYesJ4DS2zmq0=
+golang.org/x/sys v0.19.0 h1:q5f1RH2jigJ1MoAWp2KTp3gm5zAGFUTarQZ5U386+4o=
+golang.org/x/sys v0.19.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
