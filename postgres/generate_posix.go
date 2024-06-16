@@ -1,6 +1,6 @@
 //go:build linux || darwin
 
-package bufbuild
+package postgres
 
 // when you are working on linux or macos
 //go:generate docker run --rm -v $(pwd):/src -w /src sqlc/sqlc generate

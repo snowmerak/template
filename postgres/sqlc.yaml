@@ -2,14 +2,14 @@ version: "2"
 sql:
   - engine: "postgresql"
     queries:
-      - "./client/queries.sql"
+      - "./repository/queries.sql"
     schema:
-      - "./client/schema.sql"
+      - "./repository/schema.sql"
     gen:
       go:
-        package: "client"
+        package: "repository"
         sql_package: "pgx/v5"
-        out: "client"
+        out: "repository"
         overrides:
           - "db_type": "geometry"
             "go_type":
