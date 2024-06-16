@@ -2,7 +2,7 @@
 // versions:
 //   sqlc v1.25.0
 
-package repository
+package queries
 
 import (
 	geom "github.com/twpayne/go-geom"

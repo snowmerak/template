@@ -3,7 +3,7 @@
 //   sqlc v1.25.0
 // source: queries.sql
 
-package repository
+package queries
 
 import (
 	"context"

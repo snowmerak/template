@@ -2,14 +2,14 @@ version: "2"
 sql:
   - engine: "postgresql"
     queries:
-      - "./repository/queries.sql"
+      - "./queries/queries.sql"
     schema:
-      - "./repository/schema.sql"
+      - "./queries/schema.sql"
     gen:
       go:
-        package: "repository"
+        package: "queries"
         sql_package: "pgx/v5"
-        out: "repository"
+        out: "queries"
         overrides:
           - "db_type": "geometry"
             "go_type":
