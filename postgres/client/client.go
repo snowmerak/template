@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/snowmerak/template/postgres/queries"
 )
 
 // Client is a PostgreSQL client.
@@ -25,7 +26,9 @@ func New(ctx context.Context, connString string) (*Client, error) {
 		pool.Close()
 	})
 
-	return &Client{pool: pool}, nil
+	return &Client{
+		pool: pool,
+	}, nil
 }
 
 // Close closes the client's database connection pool.
@@ -34,6 +37,18 @@ func New(ctx context.Context, connString string) (*Client, error) {
 // Because the context passed to New will close the connection pool when it is done.
 func (c *Client) Close() {
 	c.pool.Close()
+}
+
+// acquireConn acquires a connection from the pool.
+// acquireConn returns a new Queries object that uses the acquired connection.
+// acquireConn returns an error if it fails to acquire a connection.
+func (c *Client) acquireConn(ctx context.Context) (*queries.Queries, error) {
+	conn, err := c.pool.Acquire(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("pool.Acquire: %w", err)
+	}
+
+	return queries.New(conn), nil
 }
 
 // Write some methods here to interact with the database.
