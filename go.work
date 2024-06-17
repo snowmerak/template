@@ -8,5 +8,5 @@ use (
 	redis
 	nats
 	httpserver
-	gg
+	.
 )
