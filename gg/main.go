@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/AlecAivazis/survey/v2"
 	"log"
 	"os"
 	"os/exec"
@@ -17,6 +16,8 @@ func main() {
 		"nats",
 		"postgres",
 		"redis",
+		"executable",
+		"command",
 	}
 
 	selectedTemplate := ""

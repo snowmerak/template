@@ -8,5 +8,6 @@ use (
 	redis
 	nats
 	httpserver
+	executable
 	.
 )
