@@ -5,16 +5,32 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 )
 
 func main() {
-	workspaceData, err := os.ReadFile("go.work")
+	pwd, err := os.Getwd()
 	if err != nil {
-		log.Println("Failed to read workspace data:", err)
-		log.Println("Please run this command in the root of your workspace")
-		log.Println("- go work init")
+		log.Println("Failed to get current working directory:", err)
 		return
+	}
+	path := ""
+
+	workspaceData := make([]byte, 0)
+	for {
+		workspaceData, err = os.ReadFile(filepath.Join(pwd, "go.work"))
+		if err == nil {
+			break
+		}
+
+		path = filepath.Join(filepath.Base(pwd), path)
+		pwd = filepath.Dir(pwd)
+
+		if pwd == "/" || pwd == "" || strings.HasSuffix(pwd, ":\\") {
+			log.Println("Failed to find workspace file")
+			return
+		}
 	}
 
 	templateOptions := []string{
@@ -26,7 +42,6 @@ func main() {
 		"postgres",
 		"redis",
 		"executable",
-		"command",
 	}
 
 	selectedTemplate := ""
@@ -51,11 +66,13 @@ func main() {
 		return
 	}
 
-	workspaceData = append(workspaceData, []byte("\nuse "+moduleName)...)
-	if err := os.WriteFile("go.work", workspaceData, 0644); err != nil {
+	modulePath := filepath.Join(path, filepath.Base(moduleName))
+
+	workspaceData = append(workspaceData, []byte("\nuse "+modulePath)...)
+	if err := os.WriteFile(filepath.Join(pwd, "go.work"), workspaceData, 0644); err != nil {
 		log.Println("Failed to write workspace data:", err)
 		log.Println("Please write this line to your go.work file")
-		log.Println("- use " + moduleName)
+		log.Println("- use " + modulePath)
 		return
 	}
 
