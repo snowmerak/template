@@ -15,8 +15,10 @@ gonew github.com/snowmerak/template/<template-name> <your-module-name>
 
 ## templates
 
-- [hello](./hello/README.md): a simple hello world program
-- [mono](./mono/README.md): a monorepo template
-- [buf-build](./bufbuild/README.md): a buf build template
-- [postgres](./postgres/README.md): a sqlc postgresql client template
-- [redis](./redis/README.md): a redis client template
+- [hello](./hello): a simple hello world program
+- [mono](./mono): a monorepo template
+- [buf-build](./bufbuild): a buf build template
+- [postgres](./postgres): a sqlc postgresql client template
+- [redis](./redis): a redis client template
+- [httpserver](./httpserver): a http server template
+- [httpclient](./httpclient): a http client template
