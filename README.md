@@ -20,7 +20,11 @@ go install github.com/snowmerak/template/gg@latest
 ```
 
 ```sh
-gg
+# generate go workspace with root module
+gg init
+
+# clone a module from template
+gg clone
 ```
 
 ## templates
@@ -32,3 +36,4 @@ gg
 - [redis](./redis): a redis client template
 - [httpserver](./httpserver): a http server template
 - [httpclient](./httpclient): a http client template
+- [executable](./executable): a executable template
