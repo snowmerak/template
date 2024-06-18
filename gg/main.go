@@ -74,14 +74,14 @@ func main() {
 		rootWorkspace := strings.TrimPrefix(strings.SplitN(string(workspaceData), "\n", 2)[0], "// ")
 
 		templateOptions := []string{
-			"hello",
-			"http-client",
-			"http-server",
-			"mono",
-			"nats",
-			"postgres",
-			"redis",
-			"executable",
+			"hello: a simple hello world",
+			"http-client: a simple http client",
+			"http-server: a simple http server based on gin",
+			"mono: a mono-repo application",
+			"nats: a simple nats client",
+			"postgres: a simple postgres and postgis client based on sqlc",
+			"redis: a simple redis client based on rueidis",
+			"executable: a simple executable application",
 		}
 
 		selectedTemplate := ""
@@ -91,6 +91,8 @@ func main() {
 		}, &selectedTemplate); err != nil {
 			return
 		}
+
+		selectedTemplate = strings.SplitN(selectedTemplate, ":", 2)[0]
 
 		moduleName := ""
 		if err := survey.AskOne(&survey.Input{
