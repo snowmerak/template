@@ -82,6 +82,7 @@ func main() {
 			"postgres: a simple postgres and postgis client based on sqlc",
 			"redis: a simple redis client based on rueidis",
 			"executable: a simple executable application",
+			"cassandra: a simple cassandra client based on gocql and gocqlx",
 		}
 
 		selectedTemplate := ""
