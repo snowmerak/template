@@ -1,3 +1,3 @@
-package client
+package redis
 
 // Write some methods here
