@@ -9,5 +9,6 @@ use (
 	nats
 	httpserver
 	executable
+	cassandra
 	.
 )
