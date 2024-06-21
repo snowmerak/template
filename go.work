@@ -10,5 +10,6 @@ use (
 	httpserver
 	executable
 	cassandra
+	s3
 	.
 )

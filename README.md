@@ -37,3 +37,5 @@ gg clone
 - [httpserver](./httpserver): a http server template
 - [httpclient](./httpclient): a http client template
 - [executable](./executable): a executable template
+- [cassandra](./cassandra): a cassandra client template
+- [s3](./s3): a s3 client template

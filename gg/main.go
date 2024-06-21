@@ -83,6 +83,7 @@ func main() {
 			"redis: a simple redis client based on rueidis",
 			"executable: a simple executable application",
 			"cassandra: a simple cassandra client based on gocql and gocqlx",
+			"s3: a simple s3 client based on minio",
 		}
 
 		selectedTemplate := ""
