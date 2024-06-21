@@ -9,7 +9,7 @@ type Client struct {
 	clusterConfig gocql.ClusterConfig
 }
 
-func NewClient(host ...string) *Client {
+func New(host ...string) *Client {
 	cfg := gocql.NewCluster(host...)
 
 	return &Client{
