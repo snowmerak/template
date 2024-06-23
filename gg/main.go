@@ -86,6 +86,7 @@ func main() {
 			"s3: a simple s3 client based on minio",
 			"mongo: a simple mongo client based on mongo-driver",
 			"ollama: a simple ollama client",
+			"empty: an empty module",
 		}
 
 		selectedTemplate := ""
