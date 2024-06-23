@@ -14,5 +14,6 @@ use (
 	mongo
 	ollama
 	empty
+	googleaistudio
 	.
 )

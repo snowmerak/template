@@ -87,6 +87,7 @@ func main() {
 			"mongo: a simple mongo client based on mongo-driver",
 			"ollama: a simple ollama client",
 			"empty: an empty module",
+			"google-ai-studio: a simple google ai studio client",
 		}
 
 		selectedTemplate := ""
