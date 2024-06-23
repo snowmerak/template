@@ -12,5 +12,6 @@ use (
 	cassandra
 	s3
 	mongo
+	ollama
 	.
 )
