@@ -65,7 +65,7 @@ func (c *Client) StartChat(ctx context.Context, model string, basePrompt []strin
 	return &ChatClient{
 		model:    model,
 		messages: messages,
-		format:   "json",
+		format:   "",
 	}
 }
 
@@ -108,7 +108,6 @@ func (c *Client) Generate(ctx context.Context, model string, prompt string) (str
 		Model:     model,
 		Prompt:    prompt,
 		Stream:    Box(true),
-		Format:    "json",
 		KeepAlive: Box(api.Duration{Duration: 30 * time.Second}),
 		Options:   nil,
 	}, func(response api.GenerateResponse) error {
