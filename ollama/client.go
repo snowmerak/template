@@ -63,6 +63,7 @@ func (c *Client) StartChat(ctx context.Context, model string, basePrompt []strin
 	}
 
 	return &ChatClient{
+		client:   c,
 		model:    model,
 		messages: messages,
 		format:   "",
