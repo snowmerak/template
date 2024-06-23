@@ -11,5 +11,6 @@ use (
 	executable
 	cassandra
 	s3
+	mongo
 	.
 )

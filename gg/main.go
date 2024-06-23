@@ -84,6 +84,7 @@ func main() {
 			"executable: a simple executable application",
 			"cassandra: a simple cassandra client based on gocql and gocqlx",
 			"s3: a simple s3 client based on minio",
+			"mongo: a simple mongo client based on mongo-driver",
 		}
 
 		selectedTemplate := ""
