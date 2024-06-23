@@ -112,7 +112,7 @@ func main() {
 			return
 		}
 
-		modulePath := filepath.Join(path, filepath.Base(moduleName))
+		modulePath := filepath.ToSlash(filepath.Join(path, filepath.Base(moduleName)))
 
 		workspaceData = append(workspaceData, []byte("\nuse "+modulePath)...)
 		if err := os.WriteFile(filepath.Join(pwd, "go.work"), workspaceData, 0644); err != nil {
