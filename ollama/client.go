@@ -10,14 +10,7 @@ import (
 )
 
 const (
-	ModelLlama3    = "llama3"
-	ModelQwen2     = "qwen2"
-	ModelPhi3      = "phi3"
-	ModelAya       = "aya"
-	ModelMistral   = "mistral"
-	ModelGemma     = "gemma"
-	ModelMixtral   = "mixtral"
-	ModelCodeGemma = "codegemma"
+	Model = "gemma2"
 )
 
 func Box[T any](value T) *T {
@@ -53,7 +46,7 @@ type ChatClient struct {
 	format   string
 }
 
-func (c *Client) StartChat(ctx context.Context, model string, basePrompt []string) *ChatClient {
+func (c *Client) StartChat(ctx context.Context, basePrompt []string) *ChatClient {
 	messages := make([]api.Message, len(basePrompt))
 	for i, prompt := range basePrompt {
 		messages[i] = api.Message{
@@ -64,7 +57,7 @@ func (c *Client) StartChat(ctx context.Context, model string, basePrompt []strin
 
 	return &ChatClient{
 		client:   c,
-		model:    model,
+		model:    Model,
 		messages: messages,
 		format:   "",
 	}
@@ -102,11 +95,11 @@ func (c *ChatClient) SendMessage(ctx context.Context, message string) (string, e
 	return responseMessage.String(), nil
 }
 
-func (c *Client) Generate(ctx context.Context, model string, prompt string) (string, error) {
+func (c *Client) Generate(ctx context.Context, prompt string) (string, error) {
 	responseMessage := strings.Builder{}
 	wait := make(chan struct{}, 1)
 	if err := c.client.Generate(ctx, &api.GenerateRequest{
-		Model:     model,
+		Model:     Model,
 		Prompt:    prompt,
 		Stream:    Box(true),
 		KeepAlive: Box(api.Duration{Duration: 30 * time.Second}),
@@ -126,9 +119,9 @@ func (c *Client) Generate(ctx context.Context, model string, prompt string) (str
 	return responseMessage.String(), nil
 }
 
-func (c *Client) Embedding(ctx context.Context, model string, prompt string) ([]float64, error) {
+func (c *Client) Embedding(ctx context.Context, prompt string) ([]float64, error) {
 	response, err := c.client.Embeddings(ctx, &api.EmbeddingRequest{
-		Model:  model,
+		Model:  Model,
 		Prompt: prompt,
 	})
 	if err != nil {
