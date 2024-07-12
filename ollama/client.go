@@ -15,8 +15,10 @@ const (
 )
 
 const (
-	DefaultHost = "localhost"
+	DefaultHost = "http://localhost"
 	DefaultPort = 11434
+
+	EmbeddingLength = 3584
 )
 
 func Box[T any](value T) *T {
