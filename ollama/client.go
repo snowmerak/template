@@ -5,12 +5,18 @@ import (
 	"github.com/ollama/ollama/api"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 )
 
 const (
 	Model = "gemma2"
+)
+
+const (
+	DefaultHost = "localhost"
+	DefaultPort = 11434
 )
 
 func Box[T any](value T) *T {
@@ -27,6 +33,10 @@ type Config struct {
 }
 
 func New(cfg Config) (*Client, error) {
+	if cfg.Endpoint == "" {
+		cfg.Endpoint = DefaultHost + ":" + strconv.FormatInt(DefaultPort, 10)
+	}
+
 	u, err := url.Parse(cfg.Endpoint)
 	if err != nil {
 		return nil, err
