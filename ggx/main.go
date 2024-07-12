@@ -88,6 +88,7 @@ func main() {
 			"ollama: a simple ollama client",
 			"empty: an empty module",
 			"google-ai-studio: a simple google ai studio client",
+			"milvus: a simple milvus client",
 		}
 
 		selectedTemplate := ""

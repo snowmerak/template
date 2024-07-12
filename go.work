@@ -1,19 +1,20 @@
-go 1.22.4
+go 1.22.5
 
 use (
-	hello
-	mono
-	postgres
-	bufbuild
-	redis
-	nats
-	httpserver
-	executable
-	cassandra
-	s3
-	mongo
-	ollama
-	empty
-	googleaistudio
 	.
+	bufbuild
+	cassandra
+	empty
+	executable
+	googleaistudio
+	hello
+	httpserver
+	mongo
+	mono
+	nats
+	ollama
+	postgres
+	redis
+	s3
+	milvus
 )
