@@ -17,4 +17,5 @@ use (
 	redis
 	s3
 	milvus
+	docker
 )

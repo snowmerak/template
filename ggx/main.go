@@ -89,6 +89,7 @@ func main() {
 			"empty: an empty module",
 			"google-ai-studio: a simple google ai studio client",
 			"milvus: a simple milvus client",
+			"docker: a simple docker client",
 		}
 
 		selectedTemplate := ""
