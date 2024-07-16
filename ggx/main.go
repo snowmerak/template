@@ -91,6 +91,7 @@ func main() {
 			"milvus: a simple milvus client",
 			"docker: a simple docker client",
 			"fiber: a simple fiber server",
+			"func: a simple azure function http trigger",
 		}
 
 		selectedTemplate := ""
