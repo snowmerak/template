@@ -90,6 +90,7 @@ func main() {
 			"google-ai-studio: a simple google ai studio client",
 			"milvus: a simple milvus client",
 			"docker: a simple docker client",
+			"fiber: a simple fiber server",
 		}
 
 		selectedTemplate := ""
