@@ -1,10 +1,9 @@
 package mssql
 
 import (
-	"context"
-	"database/sql/driver"
+	"database/sql"
 	"fmt"
-	mssql "github.com/microsoft/go-mssqldb"
+	"github.com/microsoft/go-mssqldb/azuread"
 )
 
 type Config struct {
@@ -27,35 +26,23 @@ func (c *Config) WithConnectionNumber(connectionNumber int) *Config {
 }
 
 type Client struct {
-	connector *mssql.Connector
+	conn *sql.DB
 }
 
-func New(connectionString string) (*Client, error) {
-	connector, err := mssql.NewConnector(connectionString)
+type DriverName string
+
+const (
+	DriverNameMSSQL   DriverName = "mssql"
+	DriverNameAzureAD DriverName = azuread.DriverName
+)
+
+func New(driver DriverName, connectionString string) (*Client, error) {
+	conn, err := sql.Open(string(driver), connectionString)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to open connection: %w", err)
 	}
 
 	return &Client{
-		connector: connector,
-	}, nil
-}
-
-type Connection struct {
-	conn driver.Conn
-}
-
-func (c *Client) Connect(ctx context.Context) (*Connection, error) {
-	conn, err := c.connector.Connect(nil)
-	if err != nil {
-		return nil, fmt.Errorf("failed to connect: %w", err)
-	}
-
-	context.AfterFunc(ctx, func() {
-		conn.Close()
-	})
-
-	return &Connection{
 		conn: conn,
 	}, nil
 }
