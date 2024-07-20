@@ -92,6 +92,7 @@ func main() {
 			"docker: a simple docker client",
 			"fiber: a simple fiber server",
 			"func: a simple azure function http trigger",
+			"mssql: a simple mssql client",
 		}
 
 		selectedTemplate := ""

@@ -20,4 +20,5 @@ use (
 	docker
 	fiber
 	func
+	mssql
 )
