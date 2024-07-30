@@ -94,6 +94,7 @@ func main() {
 			"func: a simple azure function http trigger",
 			"mssql: a simple mssql client",
 			"duckdb: a simple duckdb client",
+			"clickhouse: a simple clickhouse client",
 		}
 
 		selectedTemplate := ""

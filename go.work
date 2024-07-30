@@ -22,4 +22,5 @@ use (
 	func
 	mssql
 	duckdb
+	clickhouse
 )
