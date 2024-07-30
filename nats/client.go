@@ -2,61 +2,100 @@ package nats
 
 import (
 	"context"
+	"crypto/tls"
 	"github.com/nats-io/nats.go"
+	"strings"
 )
 
+type Config struct {
+	url       *string
+	username  *string
+	password  *string
+	token     *string
+	tlsConfig *tls.Config
+}
+
+func NewConfig() *Config {
+	return &Config{}
+}
+
+func (c *Config) WithURL(url ...string) *Config {
+	combinedURL := strings.Join(url, ",")
+	c.url = &combinedURL
+	return c
+}
+
+func (c *Config) WithUsername(username string) *Config {
+	c.username = &username
+	return c
+}
+
+func (c *Config) WithPassword(password string) *Config {
+	c.password = &password
+	return c
+}
+
+func (c *Config) WithToken(token string) *Config {
+	c.token = &token
+	return c
+}
+
+func (c *Config) WithTLSConfig(tlsConfig *tls.Config) *Config {
+	c.tlsConfig = tlsConfig
+	return c
+}
+
 // Client is a wrapper around the nats.Conn struct
-type Client[T any] struct {
-	conn    *nats.Conn
-	encoder func(T) ([]byte, error)
-	decoder func([]byte) (T, error)
+type Client struct {
+	conn *nats.Conn
 }
 
 // New creates a new NATS client
 // It returns an error if the client cannot be created
 // The client is automatically closed when the context is done
-func New[T any](ctx context.Context, encoder func(T) ([]byte, error), decoder func([]byte) (T, error)) (*Client[T], error) {
-	conn, err := nats.Connect(nats.DefaultURL)
+func New(ctx context.Context, cfg *Config) (*Client, error) {
+	url := nats.DefaultURL
+	if cfg.url != nil {
+		url = *cfg.url
+	}
+
+	opt := nats.GetDefaultOptions()
+	if cfg.username != nil {
+		opt.User = *cfg.username
+	}
+	if cfg.password != nil {
+		opt.Password = *cfg.password
+	}
+	if cfg.token != nil {
+		opt.Token = *cfg.token
+	}
+	if cfg.tlsConfig != nil {
+		opt.TLSConfig = cfg.tlsConfig
+	}
+
+	conn, err := nats.Connect(url, func(options *nats.Options) error {
+		*options = opt
+		return nil
+	})
 	if err != nil {
 		return nil, err
+	}
+
+	cli := &Client{
+		conn: conn,
 	}
 
 	context.AfterFunc(ctx, func() {
 		conn.Close()
 	})
 
-	return &Client[T]{
-		conn:    conn,
-		encoder: encoder,
-		decoder: decoder,
-	}, nil
+	return cli, nil
 }
 
-// Publish publishes a message to a subject
-func (c *Client[T]) Publish(subject string, value T) error {
-	data, err := c.encoder(value)
-	if err != nil {
-		return err
+// NewWithConn creates a new NATS client with a custom connection
+// The caller is responsible for closing the connection
+func NewWithConn(conn *nats.Conn) *Client {
+	return &Client{
+		conn: conn,
 	}
-
-	return c.conn.Publish(subject, data)
-}
-
-// Subscribe subscribes to a subject
-func (c *Client[T]) Subscribe(subject string, handler func(subject string, value T)) (*nats.Subscription, error) {
-	return c.conn.Subscribe(subject, func(msg *nats.Msg) {
-		value, err := c.decoder(msg.Data)
-		if err != nil {
-			return
-		}
-
-		handler(msg.Subject, value)
-	})
-}
-
-// Close closes the client
-// It should be called when the client is no longer needed
-// But it is automatically called when the context is done
-func (c *Client[T]) Close() {
-	c.conn.Close()
 }

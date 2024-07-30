@@ -41,6 +41,14 @@ func New(ctx context.Context, cfg *Config) (*Redis, error) {
 	}, nil
 }
 
+// NewWithConn creates a new Redis client with a custom connection.
+// The caller is responsible for closing the client.
+func NewWithConn(conn rueidis.Client) *Redis {
+	return &Redis{
+		conn: conn,
+	}
+}
+
 // Close closes the Redis client.
 // Close should be called when the client is no longer needed.
 // But it is not necessary to call Close after a call to New.

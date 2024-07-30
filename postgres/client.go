@@ -31,6 +31,19 @@ func New(ctx context.Context, connString string) (*Client, error) {
 	}, nil
 }
 
+// NewWithPool creates a new client with a custom connection pool.
+// NewWithPool returns an error if the pool is nil.
+// The caller is responsible for closing the pool when it is no longer needed.
+func NewWithPool(pool *pgxpool.Pool) (*Client, error) {
+	if pool == nil {
+		return nil, fmt.Errorf("pool is nil")
+	}
+
+	return &Client{
+		pool: pool,
+	}, nil
+}
+
 // Close closes the client's database connection pool.
 // Close should be called when the client is no longer needed.
 // But it is not necessary to call Close after a call to New.

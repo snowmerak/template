@@ -115,6 +115,14 @@ func New(ctx context.Context, cfg *Config) (*Client, error) {
 	}, nil
 }
 
+// NewWithConn creates a new client with an existing connection.
+// The caller is responsible for closing the connection.
+func NewWithConn(conn client.Client) *Client {
+	return &Client{
+		client: conn,
+	}
+}
+
 func (c *Client) Close() {
 	c.client.Close()
 }
