@@ -1,26 +1,27 @@
-go 1.22.5
+go 1.23.0
 
 use (
 	.
 	bufbuild
 	cassandra
+	clickhouse
+	docker
+	duckdb
 	empty
 	executable
+	fiber
+	func
 	googleaistudio
 	hello
 	httpserver
+	meilisearch
+	milvus
 	mongo
 	mono
+	mssql
 	nats
 	ollama
 	postgres
 	redis
 	s3
-	milvus
-	docker
-	fiber
-	func
-	mssql
-	duckdb
-	clickhouse
 )

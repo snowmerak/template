@@ -1,12 +1,13 @@
 package main
 
 import (
-	"github.com/AlecAivazis/survey/v2"
 	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
+
+	"github.com/AlecAivazis/survey/v2"
 )
 
 func main() {
@@ -95,6 +96,7 @@ func main() {
 			"mssql: a simple mssql client",
 			"duckdb: a simple duckdb client",
 			"clickhouse: a simple clickhouse client",
+			"meilisearch: a simple meilisearch client",
 		}
 
 		selectedTemplate := ""
