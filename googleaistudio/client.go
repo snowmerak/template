@@ -3,11 +3,12 @@ package googleaistudio
 import (
 	"context"
 	"fmt"
-	"github.com/google/generative-ai-go/genai"
-	"google.golang.org/api/option"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/google/generative-ai-go/genai"
+	"google.golang.org/api/option"
 )
 
 const (

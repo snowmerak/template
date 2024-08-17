@@ -113,13 +113,13 @@ func (b *Builder) Type(value int) *Builder {
 func TextSearch(value string, language option.Option[string], caseSensitive option.Option[bool], diacriticSensitive option.Option[bool]) bson.D {
 	query := bson.D{{Key: "$search", Value: value}}
 	if language.IsSome() {
-		query = append(query, bson.E{Key: "$language", Value: language.Unwrap()})
+		query = append(query, bson.E{Key: "$language", Value: language.UnwrapOr("")})
 	}
 	if caseSensitive.IsSome() {
-		query = append(query, bson.E{Key: "$caseSensitive", Value: caseSensitive.Unwrap()})
+		query = append(query, bson.E{Key: "$caseSensitive", Value: caseSensitive.UnwrapOr(false)})
 	}
 	if diacriticSensitive.IsSome() {
-		query = append(query, bson.E{Key: "$diacriticSensitive", Value: diacriticSensitive.Unwrap()})
+		query = append(query, bson.E{Key: "$diacriticSensitive", Value: diacriticSensitive.UnwrapOr(false)})
 	}
 
 	return bson.D{{Key: "$text", Value: query}}
@@ -174,10 +174,10 @@ func (b *Builder) GeoWithin(value bson.D) *Builder {
 func (b *Builder) Near(value bson.E, minDistance option.Option[float64], maxDistance option.Option[float64]) *Builder {
 	query := bson.D{value}
 	if minDistance.IsSome() {
-		query = append(query, bson.E{Key: "$minDistance", Value: minDistance.Unwrap()})
+		query = append(query, bson.E{Key: "$minDistance", Value: minDistance.UnwrapOr(0.0)})
 	}
 	if maxDistance.IsSome() {
-		query = append(query, bson.E{Key: "$maxDistance", Value: maxDistance.Unwrap()})
+		query = append(query, bson.E{Key: "$maxDistance", Value: maxDistance.UnwrapOr(0.0)})
 	}
 
 	b.conditions = append(b.conditions, bson.E{Key: "$near", Value: query})
@@ -187,10 +187,10 @@ func (b *Builder) Near(value bson.E, minDistance option.Option[float64], maxDist
 func (b *Builder) NearSphere(value bson.E, minDistance option.Option[float64], maxDistance option.Option[float64]) *Builder {
 	query := bson.D{value}
 	if minDistance.IsSome() {
-		query = append(query, bson.E{Key: "$minDistance", Value: minDistance.Unwrap()})
+		query = append(query, bson.E{Key: "$minDistance", Value: minDistance.UnwrapOr(0.0)})
 	}
 	if maxDistance.IsSome() {
-		query = append(query, bson.E{Key: "$maxDistance", Value: maxDistance.Unwrap()})
+		query = append(query, bson.E{Key: "$maxDistance", Value: maxDistance.UnwrapOr(0.0)})
 	}
 
 	b.conditions = append(b.conditions, bson.E{Key: "$nearSphere", Value: query})
