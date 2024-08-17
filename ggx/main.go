@@ -116,7 +116,7 @@ func main() {
 			return
 		}
 
-		cmd := exec.Command("gonew", "github.com/snowmerak/template/"+strings.ReplaceAll(selectedTemplate, "-", ""), filepath.ToSlash(filepath.Join(rootWorkspace, moduleName)))
+		cmd := exec.Command("gonew", "github.com/snowmerak/template/"+strings.ReplaceAll(selectedTemplate, "-", ""), filepath.ToSlash(filepath.Join(rootWorkspace, path, moduleName)))
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
