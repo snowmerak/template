@@ -1,6 +1,8 @@
 package meilisearch
 
 import (
+	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/meilisearch/meilisearch-go"
@@ -56,4 +58,30 @@ func New(config *Config) *Client {
 	})
 
 	return &Client{client: client}
+}
+
+type SearchResult[T any] struct {
+	Hits               []*T   `json:"hits"`
+	Offset             int64  `json:"offset"`
+	Limit              int64  `json:"limit"`
+	EstimatedTotalHits int64  `json:"estimatedTotalHits"`
+	ProcessingTimeMs   int64  `json:"processingTimeMs"`
+	Query              string `json:"query"`
+}
+
+func Search[T any](c *Client, index string, query string) (*SearchResult[T], error) {
+	res, err := c.client.Index(index).SearchRaw(query, &meilisearch.SearchRequest{
+		Limit:            100,
+		ShowRankingScore: true,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("meilisearch: searchRaw: %w", err)
+	}
+
+	sr := new(SearchResult[T])
+	if err := json.Unmarshal(*res, sr); err != nil {
+		return nil, fmt.Errorf("meilisearch: unmarshal: %w", err)
+	}
+
+	return sr, nil
 }
