@@ -21,10 +21,10 @@ go install github.com/snowmerak/template/ggx@latest
 
 ```sh
 # generate go workspace with root module
-gg init
+ggx init
 
 # clone a module from template
-gg clone
+ggx clone
 ```
 
 ## templates
