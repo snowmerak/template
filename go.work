@@ -26,4 +26,5 @@ use (
 	redis
 	s3
 	valkey
+	qdrant
 )
