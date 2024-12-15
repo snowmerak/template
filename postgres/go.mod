@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/postgres
 
-go 1.22.4
+go 1.23.4
 
 require (
 	github.com/jackc/pgx/v5 v5.6.0

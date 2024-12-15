@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/mssql
 
-go 1.22.5
+go 1.23.4
 
 require github.com/microsoft/go-mssqldb v1.7.2
 

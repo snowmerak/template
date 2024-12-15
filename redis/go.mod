@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/redis
 
-go 1.22.4
+go 1.23.4
 
 require github.com/redis/rueidis v1.0.39
 

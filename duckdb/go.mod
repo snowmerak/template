@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/duckdb
 
-go 1.22.5
+go 1.23.4
 
 require github.com/marcboeker/go-duckdb v1.7.0
 

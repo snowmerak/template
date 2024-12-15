@@ -1,3 +1,3 @@
 module github.com/snowmerak/template/empty
 
-go 1.22.4
+go 1.23.4

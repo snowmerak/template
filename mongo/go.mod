@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/mongo
 
-go 1.22.4
+go 1.23.4
 
 require go.mongodb.org/mongo-driver v1.15.1
 
