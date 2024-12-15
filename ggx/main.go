@@ -91,6 +91,7 @@ func main() {
 			"empty: an empty module",
 			"google-ai-studio: a simple google ai studio client",
 			"milvus: a simple milvus client",
+			"qdrant: a simple qdrant client",
 			"docker: a simple docker client",
 			"fiber: a simple fiber server",
 			"func: a simple azure function http trigger",
