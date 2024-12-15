@@ -82,6 +82,7 @@ func main() {
 			"nats: a simple nats client",
 			"postgres: a simple postgres and postgis client based on sqlc",
 			"redis: a simple redis client based on rueidis",
+			"valkey: a simple valkey client based on valkey-go",
 			"executable: a simple executable application",
 			"cassandra: a simple cassandra client based on gocql and gocqlx",
 			"s3: a simple s3 client based on minio",
