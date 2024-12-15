@@ -16,7 +16,7 @@ gonew github.com/snowmerak/template/<template-name> <your-module-name>
 or you can use `gg` tool to generate a project from a template.
 
 ```sh
-go install github.com/snowmerak/template/gg@latest
+go install github.com/snowmerak/template/ggx@latest
 ```
 
 ```sh
