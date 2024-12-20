@@ -99,6 +99,7 @@ func main() {
 			"duckdb: a simple duckdb client",
 			"clickhouse: a simple clickhouse client",
 			"meilisearch: a simple meilisearch client",
+			"zerolog: a simple zerolog initialization",
 		}
 
 		selectedTemplate := ""
