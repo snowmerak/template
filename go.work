@@ -28,4 +28,5 @@ use (
 	valkey
 	qdrant
 	zerolog
+	entgo
 )

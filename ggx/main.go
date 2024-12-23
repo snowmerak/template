@@ -100,6 +100,7 @@ func main() {
 			"clickhouse: a simple clickhouse client",
 			"meilisearch: a simple meilisearch client",
 			"zerolog: a simple zerolog initialization",
+			"entgo: a simple entgo schema",
 		}
 
 		selectedTemplate := ""
