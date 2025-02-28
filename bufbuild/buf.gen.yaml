@@ -20,4 +20,4 @@ plugins:
     opt:
       - paths=source_relative
 inputs:
-  - directory: .
+  - directory: proto
