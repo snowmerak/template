@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/valkey
 
-go 1.23.4
+go 1.24.1
 
 require github.com/valkey-io/valkey-go v1.0.51
 

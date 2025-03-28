@@ -1,5 +1,5 @@
 module github.com/snowmerak/template/executable
 
-go 1.23.4
+go 1.24.1
 
 require github.com/joho/godotenv v1.5.1

@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/googleaistudio
 
-go 1.23.4
+go 1.24.1
 
 require (
 	github.com/google/generative-ai-go v0.14.0

@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/meilisearch
 
-go 1.23.4
+go 1.24.1
 
 require github.com/meilisearch/meilisearch-go v0.27.2
 

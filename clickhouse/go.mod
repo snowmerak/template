@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/clickhouse
 
-go 1.22.5
+go 1.24.1
 
 require github.com/ClickHouse/clickhouse-go/v2 v2.26.0
 

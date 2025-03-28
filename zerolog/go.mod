@@ -1,6 +1,6 @@
 module github.com/snowmerak/template/zerolog
 
-go 1.23.4
+go 1.24.1
 
 require github.com/rs/zerolog v1.33.0
 
