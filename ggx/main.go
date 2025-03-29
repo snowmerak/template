@@ -12,7 +12,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		log.Println("Usage: gg <command>")
+		log.Println("Usage: ggx <command>")
 		log.Println("Commands:")
 		log.Println("  init: Initialize workspace")
 		log.Println("  clone: Clone a repository from template")
@@ -77,7 +77,7 @@ func main() {
 		templateOptions := []string{
 			"hello: a simple hello world",
 			"http-client: a simple http client",
-			"http-server: a simple http server based on gin",
+			"gin: a simple http server based on gin",
 			"mono: a mono-repo application",
 			"nats: a simple nats client",
 			"postgres: a simple postgres and postgis client based on sqlc",

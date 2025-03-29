@@ -1,4 +1,4 @@
-module github.com/snowmerak/template/httpserver
+module github.com/snowmerak/template/gin
 
 go 1.24.1
 

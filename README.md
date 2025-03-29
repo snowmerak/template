@@ -34,7 +34,7 @@ ggx clone
 - [buf-build](./bufbuild): a buf build template
 - [postgres](./postgres): a sqlc postgresql client template
 - [redis](./redis): a redis client template
-- [httpserver](./httpserver): a http server template
+- [httpserver](./gin): a http server template
 - [httpclient](./httpclient): a http client template
 - [executable](./executable): a executable template
 - [cassandra](./cassandra): a cassandra client template

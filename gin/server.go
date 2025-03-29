@@ -1,9 +1,10 @@
-package httpserver
+package gin
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/snowmerak/template/httpserver/handler"
-	"github.com/snowmerak/template/httpserver/middleware"
+
+	"github.com/snowmerak/template/gin/handler"
+	"github.com/snowmerak/template/gin/middleware"
 )
 
 func RegisterRoutes(engine *gin.Engine) {

@@ -13,7 +13,7 @@ use (
 	func
 	googleaistudio
 	hello
-	httpserver
+	gin
 	meilisearch
 	milvus
 	mongo
