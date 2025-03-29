@@ -10,8 +10,18 @@ import (
 type Kind string
 
 const (
-	KindEvent  Kind = "event"
-	KindSystem Kind = "system"
+	KindEvent   Kind = "event"
+	KindSystem  Kind = "system"
+	KindMeasure Kind = "measure"
+)
+
+type Status string
+
+const (
+	StatusSuccess    Status = "success"
+	StatusFailure    Status = "failure"
+	StatusCancelled  Status = "cancelled"
+	StatusInProgress Status = "in_progress"
 )
 
 type Type string
@@ -47,20 +57,37 @@ func Logger() *zerolog.Logger {
 	return &logger
 }
 
-func Debug() *zerolog.Event {
-	return logger.Debug()
-}
+func New(status Status, level Level) *zerolog.Event {
+	ev := (*zerolog.Event)(nil)
+	switch level {
+	case LevelDebug:
+		ev = logger.Debug()
+	case LevelInfo:
+		ev = logger.Info()
+	case LevelWarn:
+		ev = logger.Warn()
+	case LevelError:
+		ev = logger.Error()
+	case LevelFatal:
+		ev = logger.Fatal()
+	case LevelPanic:
+		ev = logger.Panic()
+	default:
+		ev = logger.Info()
+	}
 
-func Info() *zerolog.Event {
-	return logger.Info()
-}
-
-func Warn() *zerolog.Event {
-	return logger.Warn()
-}
-
-func Error() *zerolog.Event {
-	return logger.Error()
+	switch status {
+	case StatusSuccess:
+		return ev.Str("status", string(StatusSuccess))
+	case StatusFailure:
+		return ev.Str("status", string(StatusFailure))
+	case StatusCancelled:
+		return ev.Str("status", string(StatusCancelled))
+	case StatusInProgress:
+		return ev.Str("status", string(StatusInProgress))
+	default:
+		return ev.Str("status", string(StatusSuccess))
+	}
 }
 
 func Send(event *zerolog.Event) {
