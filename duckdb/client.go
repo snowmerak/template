@@ -4,7 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	_ "github.com/marcboeker/go-duckdb"
+
+	_ "github.com/marcboeker/go-duckdb/v2"
 )
 
 const driverName = "duckdb"
@@ -14,7 +15,9 @@ type Config struct {
 }
 
 func NewConfig() *Config {
-	return &Config{}
+	return &Config{
+		dataSource: "",
+	}
 }
 
 func (c *Config) WithDataSource(dataSource string) *Config {
