@@ -2,6 +2,7 @@ package tools
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/mark3labs/mcp-go/mcp"
@@ -42,7 +43,7 @@ func RegisterCalculator(s *server.MCPServer) {
 			result = x * y
 		case "divide":
 			if y == 0 {
-				return nil, errors.New("Cannot divide by zero")
+				return nil, errors.New("cannot divide by zero")
 			}
 			result = x / y
 		}
