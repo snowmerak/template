@@ -101,6 +101,7 @@ func main() {
 			"meilisearch: a simple meilisearch client",
 			"zerolog: a simple zerolog initialization",
 			"entgo: a simple entgo schema",
+			"mcp-server: a simple mcp server",
 		}
 
 		selectedTemplate := ""

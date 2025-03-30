@@ -29,4 +29,5 @@ use (
 	qdrant
 	zerolog
 	entgo
+	mcpserver
 )
