@@ -1,4 +1,4 @@
-go 1.24.1
+go 1.24.2
 
 use (
 	.
@@ -8,12 +8,14 @@ use (
 	docker
 	duckdb
 	empty
+	entgo
 	executable
 	fiber
 	func
+	gin
 	googleaistudio
 	hello
-	gin
+	mcpserver
 	meilisearch
 	milvus
 	mongo
@@ -23,11 +25,10 @@ use (
 	nats
 	ollama
 	postgres
+	qdrant
 	redis
 	s3
 	valkey
-	qdrant
+	vault
 	zerolog
-	entgo
-	mcpserver
 )
