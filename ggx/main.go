@@ -102,6 +102,7 @@ func main() {
 			"zerolog: a simple zerolog initialization",
 			"entgo: a simple entgo schema",
 			"mcp-server: a simple mcp server",
+			"vault: a simple vault client",
 		}
 
 		selectedTemplate := ""
