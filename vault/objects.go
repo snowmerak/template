@@ -1,6 +1,9 @@
 package vault
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 // Write wrapper for the vault client
 
@@ -8,12 +11,14 @@ import "fmt"
 type SimplePassword struct {
 	Username string
 	Password string
+	Number   int64
 }
 
 func (s *SimplePassword) Serialize() (map[string]any, error) {
 	return map[string]any{
 		"username": s.Username,
 		"password": s.Password,
+		"aged":     s.Number,
 	}, nil
 }
 
@@ -28,8 +33,22 @@ func (s *SimplePassword) Deserialize(data map[string]any) error {
 		return fmt.Errorf("password is not a string")
 	}
 
+	aged, ok := data["aged"].(json.Number)
+	if !ok {
+		return fmt.Errorf("aged is not a int64")
+	}
+
 	s.Username = username
 	s.Password = password
+	s.Number, _ = aged.Int64()
 
 	return nil
+}
+
+func (s *SimplePassword) Init() *SimplePassword {
+	if s == nil {
+		return &SimplePassword{}
+	}
+
+	return s
 }
