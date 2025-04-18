@@ -76,3 +76,19 @@ func Search[T any](c *Client, index string, query string, option SearchOption) (
 
 	return sr, nil
 }
+
+func Insert[T any](c *Client, index string, documents ...T) error {
+	_, err := c.client.Index(index).AddDocuments(documents)
+	if err != nil {
+		return fmt.Errorf("meilisearch: addDocuments: %w", err)
+	}
+	return nil
+}
+
+func UpdateSynonyms(c *Client, index string, synonyms map[string][]string) error {
+	_, err := c.client.Index(index).UpdateSynonyms(&synonyms)
+	if err != nil {
+		return fmt.Errorf("meilisearch: updateSynonyms: %w", err)
+	}
+	return nil
+}
