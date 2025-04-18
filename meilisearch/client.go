@@ -3,15 +3,13 @@ package meilisearch
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 
 	"github.com/meilisearch/meilisearch-go"
 )
 
 type Config struct {
-	Host    *string
-	ApiKey  *string
-	Timeout *time.Duration
+	Host   *string
+	ApiKey *string
 }
 
 func NewConfig() *Config {
@@ -28,13 +26,8 @@ func (c *Config) WithApiKey(apiKey string) *Config {
 	return c
 }
 
-func (c *Config) WithTimeout(timeout time.Duration) *Config {
-	c.Timeout = &timeout
-	return c
-}
-
 type Client struct {
-	client *meilisearch.Client
+	client meilisearch.ServiceManager
 }
 
 func New(config *Config) *Client {
@@ -46,16 +39,8 @@ func New(config *Config) *Client {
 	if config.ApiKey != nil {
 		apiKey = *config.ApiKey
 	}
-	timeout := 5 * time.Second
-	if config.Timeout != nil {
-		timeout = *config.Timeout
-	}
 
-	client := meilisearch.NewClient(meilisearch.ClientConfig{
-		Host:    host,
-		APIKey:  apiKey,
-		Timeout: timeout,
-	})
+	client := meilisearch.New(host, meilisearch.WithAPIKey(apiKey))
 
 	return &Client{client: client}
 }
@@ -69,9 +54,15 @@ type SearchResult[T any] struct {
 	Query              string `json:"query"`
 }
 
-func Search[T any](c *Client, index string, query string) (*SearchResult[T], error) {
+type SearchOption struct {
+	Limit  int64
+	Offset int64
+}
+
+func Search[T any](c *Client, index string, query string, option SearchOption) (*SearchResult[T], error) {
 	res, err := c.client.Index(index).SearchRaw(query, &meilisearch.SearchRequest{
-		Limit:            100,
+		Limit:            option.Limit,
+		Offset:           option.Offset,
 		ShowRankingScore: true,
 	})
 	if err != nil {
