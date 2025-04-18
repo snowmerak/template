@@ -2,16 +2,18 @@ package ollama
 
 import (
 	"context"
-	"github.com/ollama/ollama/api"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/ollama/ollama/api"
 )
 
 const (
-	Model = "gemma2"
+	ModelGemma3p12B = "gemma3:12b"
+	ModelGemma3p27B = "gemma3:27b"
 )
 
 const (
@@ -27,11 +29,13 @@ func Box[T any](value T) *T {
 
 type Client struct {
 	client *api.Client
+	model  string
 }
 
 type Config struct {
 	Endpoint string
 	Timeout  time.Duration
+	Model    string
 }
 
 func New(cfg Config) (*Client, error) {
@@ -48,6 +52,7 @@ func New(cfg Config) (*Client, error) {
 		client: api.NewClient(u, &http.Client{
 			Timeout: cfg.Timeout,
 		}),
+		model: cfg.Model,
 	}, nil
 }
 
@@ -69,7 +74,7 @@ func (c *Client) StartChat(ctx context.Context, basePrompt []string) *ChatClient
 
 	return &ChatClient{
 		client:   c,
-		model:    Model,
+		model:    c.model,
 		messages: messages,
 		format:   "",
 	}
@@ -111,7 +116,7 @@ func (c *Client) Generate(ctx context.Context, prompt string) (string, error) {
 	responseMessage := strings.Builder{}
 	wait := make(chan struct{}, 1)
 	if err := c.client.Generate(ctx, &api.GenerateRequest{
-		Model:     Model,
+		Model:     c.model,
 		Prompt:    prompt,
 		Stream:    Box(true),
 		KeepAlive: Box(api.Duration{Duration: 30 * time.Second}),
@@ -133,7 +138,7 @@ func (c *Client) Generate(ctx context.Context, prompt string) (string, error) {
 
 func (c *Client) Embedding(ctx context.Context, prompt string) ([]float64, error) {
 	response, err := c.client.Embeddings(ctx, &api.EmbeddingRequest{
-		Model:  Model,
+		Model:  c.model,
 		Prompt: prompt,
 	})
 	if err != nil {
